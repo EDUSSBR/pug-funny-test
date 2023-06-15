@@ -5,6 +5,5 @@ window.onload = async function load() {
     document.querySelector('.count-container').textContent = json.count
 }
 document.querySelector('button').addEventListener('click', function goBack() {
-    console.log("entrou")
     window.location.replace('/users')
 })
