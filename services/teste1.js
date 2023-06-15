@@ -13,6 +13,7 @@ const getUser = (req, res) => {
         }
         return res.status(404).send(error(404, "Cannot find user."))
     } catch (e) {
+        console.log(e)
         res.send(500)
     }
 };
@@ -21,6 +22,7 @@ const getUsers = (req, res) => {
     try {
         res.render('users', { users: [...users.values()] });
     } catch (e) {
+        console.log(e)
         res.sendStatus(500)
     }
 };

@@ -20,6 +20,7 @@ export function givePermission(req, res) {
         users.set(name, myNewAdminAccount)
         return res.send()
     } catch (e) {
+        console.log(e)
         return res.sendStatus(500)
     }
 }
@@ -39,6 +40,7 @@ export function login(req, res) {
         console.log('token para copiar e usar no header authorization', newToken)
         return res.send({ token: newToken })
     } catch (e) {
+        console.log(e)
         return res.sendStatus(500)
     }
 }
@@ -55,16 +57,23 @@ export function authentication(req, res, next) {
         req.permissions = users.get(name).permissions
         next()
     } catch (e) {
+        console.log(e)
         return res.sendStatus(500)
     }
 }
 
 export function canDelete(req, res, next) {
-    const { canDelete } = req.permissions
-    if (!canDelete) {
-        return res.status(401).send(error(401, "Unauthorized."))
+    try {
+        const { canDelete } = req.permissions
+        if (!canDelete) {
+            return res.status(401).send(error(401, "Unauthorized."))
+        }
+        next()
+        
+    } catch (e) {
+        console.log(e)
+        return res.status(500).send(error(500, "Server problem"))
     }
-    next()
 }
 export function canUpdate(req, res, next) {
     try {
@@ -74,6 +83,7 @@ export function canUpdate(req, res, next) {
         }
         next()
     } catch (e) {
+        console.log(e)
         return res.sendStatus(500)
     }
 }
