@@ -4,12 +4,12 @@ import { users } from "../fakeData.js";
 export function returnCount(req, res) {
     try{
         const { name } = req.query;
-        if (!users.has(name)) {
+        const userDoesNotExists = users.has(name)
+        if (userDoesNotExists) {
             return res.status(404).send(error(404, "Cannot find user."))
         }
-        
-        const hasCount = users.get(name).count !== undefined
-        const count = hasCount ? users.get(name).count : 0;
+        const hasCountNumber = users.get(name).count !== undefined
+        const count = hasCountNumber ? users.get(name).count : 0;
         return res.send({ count })
 
     } catch (e) {

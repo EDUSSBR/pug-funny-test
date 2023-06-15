@@ -10,7 +10,8 @@ export function updateUser(req, res) {
             return res.status(409).send(error(409, "User already exists, try another name"))
         }
         for (const user of users.values()) {
-            if (Number(user.id) == Number(id)) {
+            const isTheUserForUpdating = Number(user.id) == Number(id)
+            if (isTheUserForUpdating) {
                 users.delete(user.name)
                 users.set(name, { id, name, job })
                 return res.sendStatus(200)

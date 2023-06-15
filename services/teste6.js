@@ -28,11 +28,13 @@ export function givePermission(req, res) {
 export function login(req, res) {
     try {
         const { name, password } = req.body;
-        if (!users.has(name) || !users.get(name).password) {
+        const userDoesNotExists_Or_HaveNoPassword = !users.has(name) || !users.get(name).password
+        if (userDoesNotExists_Or_HaveNoPassword) {
             return res.status(404).send(error(404, "Cannot find user."))
         }
         const hashedPassword = crypto.createHash('sha256').update(password + "superhash0salts").digest('hex')
-        if (hashedPassword !== users.get(name).password) {
+        const incorrectPassword = hashedPassword !== users.get(name).password
+        if (incorrectPassword) {
             return res.status(400).send(error(400, "Bad Request"))
         }
         const newToken = "token-secreto-monstro-do--" + name + "--" + crypto.randomBytes(20).toString('hex')
