@@ -15,7 +15,8 @@ export function givePermission(req, res) {
         if (!users.has(name)) {
             return res.status(404).send(error(404, "Cannot find user."))
         }
-        const passwordHash = crypto.createHash('sha-256').update(password + "superhash0salts").digest('hex')
+        const hash = crypto.createHash('sha256')
+        const passwordHash = hash.update(password + "superhash0salts").digest('hex')
         const myNewAdminAccount = { ...users.get(name), permissions: { canUpdate, canDelete }, password: passwordHash };
         users.set(name, myNewAdminAccount)
         return res.send()
@@ -30,7 +31,7 @@ export function login(req, res) {
         if (!users.has(name) || !users.get(name).password) {
             return res.status(404).send(error(404, "Cannot find user."))
         }
-        const hashedPassword = crypto.createHash('sha-256').update(password + "superhash0salts").digest('hex')
+        const hashedPassword = crypto.createHash('sha256').update(password + "superhash0salts").digest('hex')
         if (hashedPassword !== users.get(name).password) {
             return res.status(400).send(error(400, "Bad Request"))
         }
@@ -69,7 +70,7 @@ export function canDelete(req, res, next) {
             return res.status(401).send(error(401, "Unauthorized."))
         }
         next()
-        
+
     } catch (e) {
         console.log(e)
         return res.status(500).send(error(500, "Server problem"))
