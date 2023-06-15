@@ -27,7 +27,9 @@ body > div > div{
     justify-content: center;
     
 }
-
+.password-input-container label{
+    margin-right: 20px;
+}
 .permission-password-container  input{ 
     margin-right: 20px;
 }

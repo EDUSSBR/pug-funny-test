@@ -46,9 +46,6 @@ html
                 label(for=canDelete) can update
                 input(type='checkbox' id='canUpdate' name='canUpdate' checked)
               div
-                div
-                  label(for='permission-password') Password:
-                  input(type='password' id='permission-password' name='permission-password'  required placeholder='Tell me a password..')
           div
             h2 Available users
             div(class='radio-container')
@@ -56,6 +53,9 @@ html
                 div
                   input(type='radio' id=user.name name='name' value=user.name)
                   label(for=user.name)= user.name
+      div(class="password-input-container")
+        label(for='permission-password') Password:
+        input(type='password' id='permission-password' name='permission-password'  required placeholder='Tell me a password..')
 
       p(id='login-message')
       p(id='token')
@@ -74,7 +74,7 @@ html
     hr
     div(class='form-container')
       h1 Try now updating some users: 
-      h2 Click for selecting an users
+      h2 Click for selecting users
       p(style="color:black") *if you change your own info, make sure to set permissions and sign in again for getting a new token
       p(id='update-message')
       ul
