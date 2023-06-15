@@ -1,0 +1,19 @@
+html
+  head
+    link(rel='stylesheet' href='/css/reset.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
+    link(rel='stylesheet' href='/css/globals.css')
+    link(rel='stylesheet' href='/css/user.css')
+    script(src='../scripts/user.js' defer)
+  body
+    div(class='form-container')
+      h1 Usuário encontrado:
+      ul
+        div
+          li= id
+          li(id='name')= name
+          li= job
+      h1 User click counts: 
+      p(class='count-container') ...loading
+      button Voltar
+

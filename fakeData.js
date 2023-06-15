@@ -1,5 +1,4 @@
-
-const fakeData  =  [
+const fakeData = [
     {
         id: 1,
         name: "João Oliveira",
@@ -7,5 +6,8 @@ const fakeData  =  [
     }
 ]
 
-
-module.exports = fakeData;
+const users = new Map()
+for (let user of fakeData) {
+    users.set(user.name, user)
+}
+export { users }

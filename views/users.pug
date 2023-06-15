@@ -1,0 +1,87 @@
+html
+  head
+    link(rel='stylesheet' href='/css/reset.css')
+    link(rel='stylesheet' href='/css/globals.css')
+    link(rel='stylesheet' href='/css/users.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
+    script(src='../scripts/users.js' defer)
+    style
+      | body {
+      |   font-family: Roboto, sans-serif;
+      | }
+  body
+    div(class='form-container')
+      h1 Formulário de criação de usuário
+      p(id='error-message')
+      form
+        label(for='name') Name:
+        input(type='text' id='nome' name='name' required placeholder='Tell me a name..')
+
+        label(for='job') Job:
+        input(type='text' id='job' name='job'  required placeholder='Tell me a job..')
+
+        button(type='submit') Create User
+    hr
+    div(class='form-container')  
+      h1 All users
+      h2 *click em um card para visualizar o conteudo da rota get(/user?name=nomedousuario)
+      ul
+        each user in users
+          div(class='user user-card' id=user.id)
+            li= user.id
+            li= user.name
+            li= user.job
+    hr
+    div(class='form-container')
+      h1 Add permissions to a user
+      p(id='error-message-permissions')
+      h2 Please, choose an user which you would like to set permissions:
+      h2 Available users
+      div(class='radio-container')
+        each user in users
+          div
+            input(type='radio' id=user.name name='name' value=user.name)
+            label(for=user.name)= user.name
+      h2 Permissions
+      div(class='permission-password-container' id='permissionForm')
+        div(class='permission-checkbox')
+          label(for=canDelete) can delete
+          input(type='checkbox' id='canDelete' name='canDelete' checked)
+          label(for=canDelete) can update
+          input(type='checkbox' id='canUpdate' name='canUpdate' checked)
+        div
+          div
+            label(for='permission-password') Password:
+            input(type='password' id='permission-password' name='permission-password'  required placeholder='Tell me a password..')
+        button(type='button' id='permissionButton') Set user permissions
+        p(id='login-message')
+        p(id='token')
+        button(type='button' id='loginButton') Make Login
+    hr
+    div(class='form-container')
+      h1 Try now deleting some users: 
+      p(id='delete-message')
+      ul
+        each user in users
+          div(class='user-for-deletion user-card' id=user.id)
+            li= user.id
+            li= user.name
+            li= user.job
+    hr
+    div(class='form-container')
+      h1 Try now updating some users: 
+      h2 Click for selecting an users
+      p(style="color:black") *if you change your own info, make sure to set permissions and sign in again for getting a new token
+      p(id='update-message')
+      ul
+        each user in users
+          div(class='user-for-update user-card' id=user.id)
+            li= user.id
+            li= user.name
+            li= user.job
+      div(id='update-inputs-container') 
+        label(for="user-name-for-updating") Name: 
+        input(id='user-name-for-updating')
+        label(for="user-job-for-updating") Job: 
+        input(id='user-job-for-updating')
+      button(type='button' id='updateUserButton') Update User
