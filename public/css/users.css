@@ -114,3 +114,16 @@ input {
     display: flex;
     flex-direction: column;
 }
+
+.user-permissions-container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    gap:30px;
+}
+.user-permissions-container > div{
+    display: flex;
+    flex-direction: column;
+}

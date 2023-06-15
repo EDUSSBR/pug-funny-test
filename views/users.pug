@@ -36,27 +36,31 @@ html
       h1 Add permissions to a user
       p(id='error-message-permissions')
       h2 Please, choose an user which you would like to set permissions:
-      h2 Available users
-      div(class='radio-container')
-        each user in users
+        div(class="user-permissions-container")
           div
-            input(type='radio' id=user.name name='name' value=user.name)
-            label(for=user.name)= user.name
-      h2 Permissions
-      div(class='permission-password-container' id='permissionForm')
-        div(class='permission-checkbox')
-          label(for=canDelete) can delete
-          input(type='checkbox' id='canDelete' name='canDelete' checked)
-          label(for=canDelete) can update
-          input(type='checkbox' id='canUpdate' name='canUpdate' checked)
-        div
+            h2 Permissions
+            div(class='permission-password-container' id='permissionForm')
+              div(class='permission-checkbox')
+                label(for=canDelete) can delete
+                input(type='checkbox' id='canDelete' name='canDelete' checked)
+                label(for=canDelete) can update
+                input(type='checkbox' id='canUpdate' name='canUpdate' checked)
+              div
+                div
+                  label(for='permission-password') Password:
+                  input(type='password' id='permission-password' name='permission-password'  required placeholder='Tell me a password..')
           div
-            label(for='permission-password') Password:
-            input(type='password' id='permission-password' name='permission-password'  required placeholder='Tell me a password..')
-        button(type='button' id='permissionButton') Set user permissions
-        p(id='login-message')
-        p(id='token')
-        button(type='button' id='loginButton') Make Login
+            h2 Available users
+            div(class='radio-container')
+              each user in users
+                div
+                  input(type='radio' id=user.name name='name' value=user.name)
+                  label(for=user.name)= user.name
+
+      p(id='login-message')
+      p(id='token')
+      button(type='button' id='permissionButton') Set user permissions
+      button(type='button' id='loginButton') Make Login
     hr
     div(class='form-container')
       h1 Try now deleting some users: 
