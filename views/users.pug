@@ -11,7 +11,7 @@ html
       | }
   body
     div(class='form-container')
-      h1 Formulário de criação de usuário
+      h1 Form for creating user
       p(id='error-message')
       form
         label(for='name') Name:
@@ -24,7 +24,7 @@ html
     hr
     div(class='form-container')  
       h1 All users
-      h2 *click em um card para visualizar o conteudo da rota get(/user?name=nomedousuario)
+      h2 *click in a card for getting the route get(/user?name=nomedousuario) content
       ul
         each user in users
           div(class='user user-card' id=user.id)
