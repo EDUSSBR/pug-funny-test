@@ -6,13 +6,12 @@ import { deleteUser } from './services/teste3.js';
 import { updateUser } from './services/teste4.js';
 import { returnCount } from './services/teste5.js';
 import { authentication, canDelete, canUpdate, login, givePermission } from './services/teste6.js';
-
+import cors from 'cors'
 /* 
 Daria pra acrescentar muitas coisas, o básico pedido está aí..
 Algumas coisas que deixei de lado: 
 -Validações
 -Sanitizações
--Cors já que estou servindo usando a template engine que veio no código
 -Não me preocupei se um usuário adm pode mexer em outro
 -Não me preocupei com os dados enviados ao front no caso de o servidor for uma api rest sem o jade,
 teria que selecionar pra não enviar o password e outras informações quando realizado o get do usuário,
@@ -30,6 +29,7 @@ const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views/');
+app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 
