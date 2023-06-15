@@ -1,6 +1,6 @@
 import { error } from "../error.js";
 import { users } from "../fakeData.js";
-
+let size = users.size
 export function deleteUser(req, res) {
     try {
         const { name } = req.query;
@@ -19,7 +19,7 @@ export function deleteUser(req, res) {
 export function createUser(req, res) {
     try {
         const { name, job } = req.body;
-        const newUser = { id: users.size + 1, name, job }
+        const newUser = { id: ++size, name, job }
         if (users.has(name)) {
             return res.status(409).send(error(409, "User already exists."))
         }
